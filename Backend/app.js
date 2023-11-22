@@ -15,16 +15,15 @@ app.use(bodyParser.json({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
-
 app.use("/blog", blogRoutes);
-
-
-// AddComment.belongsTo(Blog, { through: CommentId });
-// Blog.belongsToMany(AddComment, { through: CommentId });
 
 Blog.hasMany(AddComment);
 AddComment.belongsTo(Blog);
 
+// Blog.belongsToMany(AddComment, { through: CommentId });
+// AddComment.hasOne(Blog);
+// AddComment.belongsTo(Blog, { through: CommentId });
+// Blog.belongsToMany(AddComment, { through: "CommentId" });
 
 sequelize
   // .sync({ force: true })
